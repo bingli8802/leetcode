@@ -13,3 +13,8 @@ class Solution(object):
             i = "".join(reversed(i))
             ret.append(i)
         return " ".join(ret)
+    
+        # for i in xrange(len(li)):
+        #     li[i] = li[i][::-1]
+        
+        # return ' '.join(li)
