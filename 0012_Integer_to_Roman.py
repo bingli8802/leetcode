@@ -26,3 +26,27 @@ class Solution(object):
             string += self.intToRoman(rem)
         
         return string
+    
+#         TODO convert int to roman string
+#         dic = {1:"I", 5:"V",10:"X",50:"L",100:"C",500:"D",1000:"M"}
+
+#         s = ""
+#         x = 10**(len(str(n)) - 1)
+
+#         div = n/x
+#         rem = n%x
+
+#         if div in [0,1,2,3]:
+#             s += div * str(dic.get(x))
+#         elif div == 4:
+#             s += str(dic.get(1*x)) + str(dic.get(5*x))
+#         elif div == 9:
+#             s += str(dic.get(1*x)) + str(dic.get(10*x))
+#         else:
+#             s += str(dic.get(5*x)) + (div-5)*str(dic.get(x))
+            
+#         if rem != 0:
+#             s += self.intToRoman(rem)
+#         else:
+#             return s
+#         return s
