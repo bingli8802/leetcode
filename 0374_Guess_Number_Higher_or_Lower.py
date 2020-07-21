@@ -12,7 +12,7 @@ class Solution(object):
         left = 0
         right = n
         
-        while(left < right):
+        while(left <= right):
             middle = (left+right)/2
             if guess(middle) == 0:
                 return middle
