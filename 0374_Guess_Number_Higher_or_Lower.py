@@ -9,7 +9,7 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        left = 0
+        left = 1
         right = n
         
         while(left <= right):
