@@ -5,7 +5,9 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        
+#       寻找第一个大于目标值的位置 最后一个元素也可能是 所以right=len(nums)
+#       循环退出的条件是当left==right 所以返回left或者right都可以
+
         left = 0
         right = len(nums)
         
@@ -14,9 +16,11 @@ class Solution(object):
             
             if nums[middle] == target:
                 return middle
-            elif nums[middle] > target:
-                right = middle
+            # 严格小于 target 的元素一定不是解
             elif nums[middle] < target:
+                # 下一轮搜索区间是 [mid + 1, right]
                 left = middle+1
-                
-        return left
+            elif nums[middle] > target:
+                # 下一轮搜索区间是 [left, mid]
+                right = middle 
+        return right
