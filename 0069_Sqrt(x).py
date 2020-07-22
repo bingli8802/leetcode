@@ -4,10 +4,7 @@ class Solution(object):
         :type x: int
         :rtype: int
         """
-        if x == 0:
-            return 0
-        
-        left = 1
+        left = 0
         right = x
         
         while left < right:
