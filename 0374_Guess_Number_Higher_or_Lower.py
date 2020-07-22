@@ -12,7 +12,9 @@ class Solution(object):
         left = 1
         right = n
         
-        while(left <= right):
+        
+#         while(left <= right):也行 最终【left，right】一定是左边小于右边
+        while(left<right):
             middle = (left+right)/2
             if guess(middle) == 0:
                 return middle
