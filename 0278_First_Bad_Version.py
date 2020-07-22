@@ -9,8 +9,8 @@ class Solution(object):
         :type n: int
         :rtype: int
         """
-        
-        left = 0
+        #left = 0也对
+        left = 1
         right = n
         
         while (left < right):
