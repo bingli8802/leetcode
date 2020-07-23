@@ -27,6 +27,7 @@ class Solution(object):
         left = 0
         right = len(nums)-1
         while left < right:
+#           向右取中位数！
             middle = (left+right+1)/2
             if nums[middle] > target:
                 right = middle-1
