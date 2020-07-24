@@ -11,7 +11,8 @@ class Solution(object):
             mid = (left+right)/2
             if nums[mid] == target:
                 return True
-            
+#           判断左边界和右边界是否相等
+#           如果相等，左边界右移，直到不相等
             if nums[left] == nums[right]:
                 left += 1
                 continue
