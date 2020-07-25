@@ -16,6 +16,7 @@ class Solution(object):
         
         while left <= right:
             middle = (left+right)/2
+#           巧妙的用了一个方法 计算matrix[r][c]
             r = middle/col
             c = middle%col
             if matrix[r][c] == target:
