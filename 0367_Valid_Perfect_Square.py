@@ -34,7 +34,6 @@ class Solution(object):
 
         if num <= 1:
             return True
- 
         left = 1
         right = num 
         while left <= right:
@@ -49,7 +48,7 @@ class Solution(object):
                     left = mid + 1
         return False
 
-# 第三次看完教程
+# 第三次看完教程 第一遍复习答案
 class Solution(object):
     def isPerfectSquare(self, num):
         """
@@ -58,10 +57,8 @@ class Solution(object):
         """
 #       退出循环条件：
 #       left+1大于right 或者right-1小于left 循环结束
-        
         left = 0
         right = num
-        
         while left <= right:
             mid = (left+right)/2
             if mid * mid == num:
