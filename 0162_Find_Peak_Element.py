@@ -5,7 +5,7 @@ class Solution(object):
         :rtype: int
         """
 #       已知条件：nums[-1] = nums[n] = -∞， 意味着总有峰值
-#       迭代二分查找
+#       迭代二分查找,注意right范围，因为比较middle和middle+1，防止越界
         left = 0
         right = len(nums) - 1
         
