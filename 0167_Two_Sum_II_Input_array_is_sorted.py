@@ -5,7 +5,8 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        
+#       用两个指针，一个头一个尾
+#       如果小于target，左边右移，如果大于target，右边左移
         i, j = 0, len(numbers)-1
         ret = []
         
