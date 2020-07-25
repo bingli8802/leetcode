@@ -7,22 +7,21 @@ class Solution(object):
         """
         left = 0
         right = len(nums)-1
-        
         while left <= right:
-            middle = left + (right - left) / 2
-
-            if nums[middle] == target:
-                return middle
-            
-            elif nums[middle] < nums[right]:
-                if nums[middle] < target and target <= nums[right]:
-                    left = middle + 1
+            mid = (left+right)/2
+            if nums[mid] == target:
+                return mid
+            # 如果中间数小于最右边的数，那么[mid,right]这一区间是单调升的
+            if nums[mid] < nums[right]:
+                # 如果target在单调升这一区间
+                if nums[mid] < target and target <= nums[right]:
+                    left = mid + 1
                 else:
-                    right = middle - 1
+                    right = mid - 1
+            # 如果中间数大于最左边的数，那么[left,mid]这一区间是单调升的
             else:
-                if nums[left] <= target and target < nums[middle]:
-                    right = middle - 1
+                if nums[left] <= target and target < nums[mid]:
+                    right = mid - 1
                 else:
-                    left = middle + 1       
+                    left = mid + 1
         return -1
-                
