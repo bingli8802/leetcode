@@ -15,7 +15,9 @@ class Solution(object):
         :type z: int
         :rtype: List[List[int]]
         """
-#       用来存放最终结果
+#       思路
+#       初始化x=1，用二分法找y
+        x=1
         ret = []
 #       x可能取到的值应该是[1,z]
         for x in range (1,z+1):
