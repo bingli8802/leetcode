@@ -14,7 +14,7 @@ class Solution:
                 stack.append(res)
         return stack[0]
         
-解法2 不去判断数字       
+# 解法2 不去判断数字       
 class Solution:
     def evalRPN(self, tokens: List[str]) -> int:
         operators = ["+", "-", "*", "/"]
