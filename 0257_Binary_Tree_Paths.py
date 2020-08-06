@@ -4,67 +4,55 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-# 两个类函数
+# 方法更快
 class Solution(object):
     # 类函数
-    def sumRootToLeaf(self, root):
+    def binaryTreePaths(self, root):
         """
         :type root: TreeNode
-        :rtype: int
+        :rtype: List[str]
         """
-        return self.sumHelper(root, 0)
-    # 类函数
-    def sumHelper(self, root, num):
-        if not root:
-            return 0
-        else:
-            num = num * 2 + root.val
-            if root.left == None and root.right == None:
-                return num
-            else:
-                return (self.sumHelper(root.left, num) + self.sumHelper(root.right, num)) % (10 ** 9 + 7)
-# 两个类函数
-class Solution(object):
-    # 类函数
-    def sumRootToLeaf(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
-        self.ans = 0
-        self.sumHelper(root, 0)
-        return self.ans % (10 ** 9 + 7)
-    # 类函数
-    def sumHelper(self, root, num):
-        if not root:
-            return 0
-        else:
-            num = num * 2 + root.val
-            if root.left == None and root.right == None:
-                self.ans += num
-            else:
-                self.sumHelper(root.left, num)
-                self.sumHelper(root.right, num)
+        paths = []
+        # 普通函数
+        def getPath(root, path):
+            # 如果根节点不为空 首先把根节点加到返回的string上 更新path
+            if root:
+                path += str(root.val)
+                # 如果根节点的左右子树都是空 就把当前path的值append到list 并返回
+                if not root.left and not root.right:
+                    paths.append(path)
+                # 如果根节点的左右子树不都为空 就把"->"加到path后面 递归左右子树
+                else:
+                    path += "->"
+                    getPath(root.left, path)
+                    getPath(root.right, path)
+        # 调用函数
+        getPath(root, "")
+        return paths
 
 class Solution(object):
     # 类函数
-    def sumRootToLeaf(self, root):
+    def binaryTreePaths(self, root):
         """
         :type root: TreeNode
-        :rtype: int
+        :rtype: List[str]
         """
-        self.ans = 0
-        # 普通函数
-        def sumHelper(root, num):
-            if not root:
-                return 0
+        # 定义全局变量self.paths
+        self.paths = []
+        # 调用函数
+        self.getPath(root, "")
+        return self.paths
+    # 类函数
+    def getPath(self, root, path):
+        # 如果根节点不为空 首先把根节点加到返回的string上 更新path
+        if root:
+            path += str(root.val)
+            # 如果根节点的左右子树都是空 就把当前path的值append到list 并返回
+            if not root.left and not root.right:
+                self.paths.append(path)
+            # 如果根节点的左右子树不都为空 就把"->"加到path后面 递归左右子树
             else:
-                num = num * 2 + root.val
-                if root.left == None and root.right == None:
-                    self.ans += num
-                else:
-                    sumHelper(root.left, num)
-                    sumHelper(root.right, num)
-        sumHelper(root, 0)
-        return self.ans % (10 ** 9 + 7)
+                path += "->"
+                self.getPath(root.left, path)
+                self.getPath(root.right, path)
 
