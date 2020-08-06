@@ -4,6 +4,11 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+# 如果不是单值二叉树，则必定存在至少一对父子关系的结点，值不同。
+# 1.递归访问左右子树。查看左右子树满足的情况
+# 2.如果当前结点和左孩子或右孩子值不同，返回false
+# 3.如果当前结点为空，则该路径上未存在不同的值，返回true
+
 class Solution(object):
     def isUnivalTree(self, root):
         """
