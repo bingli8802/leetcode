@@ -12,6 +12,7 @@ class Solution(object):
         """
         min_val = 10000
         res = self.getNodes(root)
+        # 每次比较相邻两个元素 找到小的那个 更新min
         for i in range(len(res) - 1):
             min_val = min(res[i + 1] - res[i], min_val)
         return min_val
