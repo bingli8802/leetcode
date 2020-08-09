@@ -11,7 +11,7 @@ class Solution(object):
         :rtype: int
         """
         def helper(root, val):
-            # 如果根节点为空 返回-1
+            # 如果根节点为空 说明比较完之后发现 这个节点不大于目标值 返回-1
             if root == None:
                 return -1
             # 如果根节点大于目标值 直接返回 因为根节点一定是最小的元素
@@ -28,6 +28,3 @@ class Solution(object):
             return min(left, right)
         
         return helper(root, root.val)
-
-        
-        
