@@ -4,6 +4,10 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
+
+# 一个节点上的 金币数 - 1 称为过载量，那么有以下公式：
+# 节点的过载量 = 左节点的过载量 + 右节点过载量 + 节点金币数 - 1
+# 移动次数其实就等于每次递归时，左右节点过载量的绝对值之和
 class Solution(object):
     def distributeCoins(self, root):
         """
@@ -25,4 +29,3 @@ class Solution(object):
             return move
         moveCount(root)
         return self.ans
-
