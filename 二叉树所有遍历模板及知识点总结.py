@@ -44,8 +44,6 @@ class Solution:
         dfs(root)
         return res
 
-
-
 # 迭代
 # 时间复杂度：O(n)，n为节点数，访问每个节点恰好一次。
 # 空间复杂度：O(h)，h为树的高度。取决于树的结构，最坏情况存储整棵树，即O(n)
@@ -92,9 +90,7 @@ class Solution:
             cur = lay
             res.append(layval)
         return res
-
-        
-        
+   
 # 迭代2：前、中、后序遍历通用模板（只需一个栈的空间）
 class Solution:
     def inorderTraversal(self, root: TreeNode) -> List[int]: 
@@ -131,8 +127,6 @@ class Solution:
         #     cur = cur.left
         # return res[::-1]
         
-
-
 # 迭代3：标记法迭代（需要双倍的空间来存储访问状态）：
 # 前、中、后、层序通用模板，只需改变进栈顺序或即可实现前后中序遍历，
 # 而层序遍历则使用队列先进先出。0表示当前未访问，1表示已访问。
@@ -177,8 +171,6 @@ class Solution:
         #         res.append(cur.val)
         # return res
 
-
-
 # 莫里斯遍历
 # 时间复杂度：O(n)，n为节点数，看似超过O(n)，有的节点可能要访问两次，实际分析还是O(n)，具体参考大佬博客的分析。
 # 空间复杂度：O(1)，如果在遍历过程中就输出节点值，则只需常数空间就能得到中序遍历结果，空间只需两个指针。
@@ -221,14 +213,10 @@ class Solution:
                     cur = cur.right
         return res
 
-
-
 # N叉树遍历
 # 时间复杂度：时间复杂度：O(M)，其中 M 是 N 叉树中的节点个数。每个节点只会入栈和出栈各一次。
 # 空间复杂度：O(M)。在最坏的情况下，这棵 N 叉树只有 2 层，所有第 2 层的节点都是根节点的孩子。
 # 将根节点推出栈后，需要将这些节点都放入栈，共有 M−1个节点，因此栈的大小为 O(M)。
-
-
 """
 # Definition for a Node.
 class Node:
