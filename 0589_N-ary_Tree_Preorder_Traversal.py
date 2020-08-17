@@ -14,6 +14,7 @@ class Solution(object):
         """
         if not root: 
             return []
+        # 先把根节点入栈 再依次访问每一个子节点
         res = [root.val]
         for node in root.children:
             res.extend(self.preorder(node))
@@ -28,7 +29,7 @@ class Solution(object):
         def pre(root):  
             if not root:
                 return
-            # 先遍历根节点 再依次访问每一个孩子节点
+            # 先把根节点入栈 再依次访问每一个子节点
             res.append(root.val)
             for child in root.children:
                 pre(child)
@@ -48,7 +49,9 @@ class Solution(object):
         stack = [root]
         while stack:
             cur = stack.pop()
+            # 根节点入栈
             res.append(cur.val)
+            # 从头最右边孩子开始遍历
             for child in cur.children[::-1]:
                 stack.append(child)
         return res
