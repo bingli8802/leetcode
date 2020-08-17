@@ -28,6 +28,7 @@ class Solution(object):
         def pre(root):  
             if not root:
                 return
+            # 先遍历根节点 再依次访问每一个孩子节点
             res.append(root.val)
             for child in root.children:
                 pre(child)
