@@ -41,10 +41,15 @@ class Solution(object):
         stack = []
         cur = root
         while stack or cur:
+            # 当左子树不存在的时候循环停止
             while cur:
+                # stack入栈
                 stack.append(cur)
+                # 目标左子树
                 cur = cur.left
+            # 出栈
             cur = stack.pop()
             res.append(cur.val)
+            # 目标值右子树
             cur = cur.right
         return res
