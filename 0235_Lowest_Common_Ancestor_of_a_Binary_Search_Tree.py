@@ -5,6 +5,27 @@
 #         self.left = None
 #         self.right = None
 
+class Solution(object):
+    def lowestCommonAncestor(self, root, p, q):
+        """
+        :type root: TreeNode
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: TreeNode
+        """
+        parent_val = root.val
+        p_val = p.val
+        q_val = q.val
+        # 如果p和q都比root大 就在右子树搜索
+        if p_val > parent_val and q_val > parent_val:    
+            return self.lowestCommonAncestor(root.right, p, q)
+        # 如果p和q都比root小 就在左子树搜索
+        elif p_val < parent_val and q_val < parent_val:    
+            return self.lowestCommonAncestor(root.left, p, q)
+        # 如果p小于root，q大于root 那么这个节点就是root
+        else:
+            return root
+            
 # 做法不对
 # 想法是找到p q的根节点 再比较
 # class Solution(object):
@@ -32,29 +53,6 @@
 #             self.roots.append(root.val)
 #             # return self.roots
 #         return self.roots
-
-class Solution(object):
-    def lowestCommonAncestor(self, root, p, q):
-        """
-        :type root: TreeNode
-        :type p: TreeNode
-        :type q: TreeNode
-        :rtype: TreeNode
-        """
-        parent_val = root.val
-        p_val = p.val
-        q_val = q.val
-        
-        # If both p and q are greater than parent
-        if p_val > parent_val and q_val > parent_val:    
-            return self.lowestCommonAncestor(root.right, p, q)
-        # If both p and q are lesser than parent
-        elif p_val < parent_val and q_val < parent_val:    
-            return self.lowestCommonAncestor(root.left, p, q)
-        # We have found the split point, i.e. the LCA node.
-        else:
-            return root
-            
             
             
             
