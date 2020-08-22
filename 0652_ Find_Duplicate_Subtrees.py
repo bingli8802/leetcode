@@ -17,8 +17,10 @@ class Solution(object):
                 return ''
             # 用"#"连接 根节点 左孩子 右孩子
             s = '#'.join((str(root.val), dfs(root.left), dfs(root.right)))
-            # 遍历出来的每一个子树都放入字典，每次更新字典
+            # 遍历出来的每一个子树都要append到d[s]对应的list后面
+            # dict = {"4##":[Tree1, Tree2]}
             d[s].append(root)
+            # dict = {"4##":[Tree1, Tree2, root]} root被append到里面
             return s
         dfs(root)
         # 对字典里每一个value，也就是相同子树的集合，如果这个value的长度大于1，也就说明相同子树至少有两个，那么返回这个树
