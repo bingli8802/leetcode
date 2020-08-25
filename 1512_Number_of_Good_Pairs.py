@@ -29,6 +29,7 @@ class Solution(object):
         :rtype: int
         """ 
         m = collections.Counter(nums)
+        # m = Counter({1: 3, 3: 2, 2: 1})
         return sum(v * (v - 1) // 2 for k, v in m.items())
 
 
