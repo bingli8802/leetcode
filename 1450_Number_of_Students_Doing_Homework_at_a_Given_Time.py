@@ -19,4 +19,5 @@ class Solution(object):
         :type queryTime: int
         :rtype: int
         """
+        # zip(a,b) = [(1,2), (3,4), (5,6)]
         return sum([i <= queryTime <=j for i, j in zip(startTime, endTime)])
