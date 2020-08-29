@@ -32,4 +32,15 @@ class Solution(object):
         return (all(A[i] <= A[i+1] for i in xrange(len(A) - 1)) or 
                 all(A[i] >= A[i+1] for i in xrange(len(A) - 1)))
 
-
+    def isMonotonic(self, A):
+        """
+        :type A: List[int]
+        :rtype: bool
+        """
+        if len(A)==1:
+            return True
+        result=[0]
+        for i in range(len(A)-1):
+            temp=A[i]-A[i+1]
+            result.append(temp)
+        return (max(result)==0 or min(result)==0)
