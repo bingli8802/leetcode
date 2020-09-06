@@ -5,6 +5,7 @@ class Solution(object):
         :type arr2: List[int]
         :rtype: List[int]
         """
+        # counter 计数器
         from collections import Counter
         c = Counter(arr1)
         hashmap = dict(c)
@@ -21,6 +22,7 @@ class Solution(object):
         :type arr2: List[int]
         :rtype: List[int]
         """
+        # defaultdict
         from collections import defaultdict
         dic = defaultdict(int)
         for k, v in enumerate(arr2):
@@ -33,6 +35,7 @@ class Solution(object):
             else:
                 li[-1].append(num)
         li[-1].sort()
+        # flatten a list
         return [x for sublist in li for x in sublist]
     
     def relativeSortArray(self, arr1, arr2):
@@ -48,6 +51,7 @@ class Solution(object):
                 res1.append(x)
             else:
                 res2.append(x)
+        # lambda function
         res2.sort(key=lambda x: arr2.index(x))
         return res2+sorted(res1)
 
