@@ -34,3 +34,20 @@ class Solution(object):
                 li[-1].append(num)
         li[-1].sort()
         return [x for sublist in li for x in sublist]
+    
+    def relativeSortArray(self, arr1, arr2):
+        """
+        :type arr1: List[int]
+        :type arr2: List[int]
+        :rtype: List[int]
+        """
+        res1=[]
+        res2=[]
+        for x in arr1:
+            if x not in arr2:
+                res1.append(x)
+            else:
+                res2.append(x)
+        res2.sort(key=lambda x: arr2.index(x))
+        return res2+sorted(res1)
+
