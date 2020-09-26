@@ -1,6 +1,7 @@
 class Solution(object):
     # 三种解法思路一样
     # 自己解法 每次递归时减去当前值 得到remaining
+    # 注意 在for循环里加上一个判断语句 提升速度到97%
     def combinationSum(self, candidates, target):
         """
         :type candidates: List[int]
@@ -20,6 +21,9 @@ class Solution(object):
             elif rem < 0:
                 return
             for j in range(i, n):
+                # 加一个判断语句
+                if candidates[j] > rem:
+                    break
                 helper(j, rem - candidates[j], cur + [candidates[j]])
         
         helper(0, target, [])
