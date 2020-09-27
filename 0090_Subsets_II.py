@@ -11,6 +11,7 @@ class Solution(object):
         def helper(i, tmp):
             res.append(tmp)
             for j in range(i, n):
+                # 消除重复
                 if j > i and nums[j] == nums[j-1]:
                     continue
                 helper(j+1, tmp+[nums[j]])
