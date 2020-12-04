@@ -41,4 +41,18 @@ class Solution(object):
         li = s.split('0')
         return max(len(i) for i in li)
     
-    
+    # 动态规划
+    def findMaxConsecutiveOnes(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        M = [0] * n
+        M[0] = nums[0]
+        for i in range(1, n):
+            if nums[i] == 0:
+                M[i] = 0
+            else:
+                M[i] = M[i-1] + 1
+        return max(M)
