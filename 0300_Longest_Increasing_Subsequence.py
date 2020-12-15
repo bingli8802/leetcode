@@ -1,10 +1,12 @@
 class Solution(object):
-    # 时间复杂度 O(n^2)
+    # 时间复杂度 O(n^2) 效率25%
     def lengthOfLIS(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """
+        # 创建一个函数下面调用 用于查找在i之前 所有比i小的数里面 最大的连续子序列的长度
+        # 边界就是range(i)
         def maxLengthBeforeI(num):
             lstBeforeI = [dp[j] for j in range(num) if nums[j] < nums[i]]
             return max(lstBeforeI) if lstBeforeI else 0
@@ -12,10 +14,12 @@ class Solution(object):
         n = len(nums)
         dp = [0] * n
         dp[0] = 1
+        # 遍历整个数组 每次查找在i之前 所有比i小的数里面 最大的连续子序列的长度
         for i in range(1, n):
             dp[i] = 1 + maxLengthBeforeI(i)
         return max(dp)
     
+    # 效率10%
     def lengthOfLIS(self, nums):
         """
         :type nums: List[int]
