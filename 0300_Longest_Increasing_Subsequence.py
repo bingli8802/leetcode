@@ -34,46 +34,43 @@ class Solution(object):
                 if nums[i] > nums[j]:
                     dp[i] = max(dp[i], dp[j] + 1)
         return max(dp)
+    
+    def lengthOfLIS(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if not nums:
+            return 0
+        n = len(nums)
+        dp = [1] * n
+        for i in range(n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    dp[i] = max(dp[i], dp[j] + 1)
+        return max(dp)
 
-    # 二分法不会 先把答案copy过来
+    # 二分法
     def lengthOfLIS(self, nums):
         """
         :type nums: List[int]
         :rtype: int
         """ 
-        tails, res = [0] * len(nums), 0
+        tails = [0] * len(nums)
+        res = 0
         for num in nums:
-            i, j = 0, res
+            i = 0
+            j = res
             while i < j:
                 m = (i + j) // 2
+                # 左边界右移
                 if tails[m] < num: 
-                    i = m + 1 # 如果要求非严格递增，将此行 '<' 改为 '<=' 即可。
-                else: j = m
+                    i = m + 1
+                # 右边界左移
+                else: 
+                    j = m
             tails[i] = num
             if j == res: 
                 res += 1
         return res
-    
-    # 二分法不会 先把答案copy过来
-    def lengthOfLIS(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        d = []
-        for n in nums:
-            if not d or n > d[-1]:
-                d.append(n)
-            else:
-                l, r = 0, len(d) - 1
-                loc = r
-                while l <= r:
-                    mid = (l + r) // 2
-                    if d[mid] >= n:
-                        loc = mid
-                        r = mid - 1
-                    else:
-                        l = mid + 1
-                d[loc] = n
-        return len(d)
 
