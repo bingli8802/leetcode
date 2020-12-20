@@ -1,5 +1,5 @@
 class Solution(object):
-    # dp超时
+    # dp超时 O(n^2)
     def canJump(self, nums):
         """
         :type nums: List[int]
@@ -31,18 +31,32 @@ class Solution(object):
                 dp[index]=True
         return dp[0]
     
-    # 贪心算法 一次循环 但效率比解法2略低
+    # 贪心算法 一次循环
     def canJump(self, nums):
         """
         :type nums: List[int]
         :rtype: bool
         """
-        n, rightmost = len(nums), 0
+        n = len(nums)
+        rightmost = 0
         for i in range(n):
             if i <= rightmost:
                 rightmost = max(rightmost, i + nums[i])
                 if rightmost >= n - 1:
                     return True
         return False
-
+    
+    # 贪心算法 一次循环 更好理解
+    def canJump(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        n = len(nums)
+        rightmost = 0
+        for i in range(n-1):
+            rightmost = max(rightmost, i + nums[i])
+            if rightmost <= i:
+                return False
+        return rightmost >= n - 1
 
