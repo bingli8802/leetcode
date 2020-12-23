@@ -17,7 +17,7 @@ class Solution(object):
         # print dp
         return dp[n-1][0]
     
-    # 东哥二维dp 改进的动态规划 
+    # 东哥二维dp 改进为常数级别
     def maxProfit(self, prices):
         """
         :type prices: List[int]
@@ -55,7 +55,7 @@ class Solution(object):
         # print dp
         return dp[-1]
 
-    # 一维dp 改进的动态规划
+    # 一维dp 改进成常数级别
     def maxProfit(self, prices):
         """
         :type prices: List[int]
