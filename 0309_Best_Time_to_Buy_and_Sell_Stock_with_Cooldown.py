@@ -1,4 +1,24 @@
 class Solution(object):
+    # 东哥二维dp
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not prices:
+            return 0
+        n = len(prices)
+        dp = [[0] * 2 for _ in range(n)]
+        dp[0][0] = 0
+        dp[0][1] = -prices[0]
+        dp[-1][0] = 0
+        for i in range(1, n):
+            dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
+            dp[i][1] = max(dp[i-1][1], dp[i-2][0] - prices[i])
+        # print dp
+        return dp[-1][0]
+    
+    # 三维dp
     def maxProfit(self, prices):
         """
         :type prices: List[int]
@@ -17,6 +37,7 @@ class Solution(object):
             dp[i][2] = dp[i-1][0]
         return dp[-1][0]
     
+    # 优化以上两种 常数级
     def maxProfit(self, prices):
         """
         :type prices: List[int]
@@ -39,3 +60,6 @@ class Solution(object):
             dp2 = tmp
         # return max(dp0,dp1,dp2)
         return dp0
+    
+    
+
