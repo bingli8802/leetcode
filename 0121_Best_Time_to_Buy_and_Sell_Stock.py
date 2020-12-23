@@ -1,22 +1,23 @@
 class Solution(object):
-    # 动态规划
+    # 东哥二维dp
     def maxProfit(self, prices):
         """
         :type prices: List[int]
         :rtype: int
         """
+        if not prices:
+            return 0
         n = len(prices)
-        if n == 0: 
-            return 0 # 边界条件
-        # 收益 初始化都是0
-        dp = [0] * n
-        minprice = prices[0] 
+        dp = [[0] * 2 for _ in range(n)]
+        dp[0][0] = 0
+        dp[0][1] = -prices[0]
         for i in range(1, n):
-            minprice = min(minprice, prices[i])
-            dp[i] = max(dp[i-1], prices[i] - minprice)
-        return dp[-1]
+            dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])
+            dp[i][1] = max(dp[i-1][1], - prices[i])
+        # print dp
+        return dp[n-1][0]
     
-    # 改进的动态规划
+    # 东哥二维dp 改进的动态规划 
     def maxProfit(self, prices):
         """
         :type prices: List[int]
@@ -35,8 +36,26 @@ class Solution(object):
             dp1 = max(dp1,-prices[i])
         # return max(dp0,dp1)
         return dp0
+    
+    # 压缩成一维动态规划 快多了 解法中最快的
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        n = len(prices)
+        if n == 0: 
+            return 0 # 边界条件
+        # 收益 初始化都是0
+        dp = [0] * n
+        minPrice = prices[0] 
+        for i in range(1, n):
+            minPrice = min(minPrice, prices[i])
+            dp[i] = max(dp[i-1], prices[i] - minPrice)
+        # print dp
+        return dp[-1]
 
-    # 改进的动态规划
+    # 一维dp 改进的动态规划
     def maxProfit(self, prices):
         """
         :type prices: List[int]
@@ -48,16 +67,7 @@ class Solution(object):
             minPrice = min(minPrice, price)
             maxProfit = max(maxProfit, price - minPrice)
         return maxProfit
+
+
     
-#     # 特别特别慢 O(n^2)
-#     def maxProfit(self, prices):
-#         """
-#         :type prices: List[int]
-#         :rtype: int
-#         """
-#         maxi = 0
-#         for i in range(len(prices) - 1):
-#             buy = prices[i]
-#             sell = max(prices[i:])
-#             maxi = max(maxi, sell - buy)
-#         return maxi
+
