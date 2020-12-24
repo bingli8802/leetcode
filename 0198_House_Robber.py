@@ -32,5 +32,21 @@ class Solution(object):
         # 循环结束时，curr 表示 dp[k]，prev 表示 dp[k-1]
 
         return curr
-            
-            
+    # 东哥解法       
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        n = len(nums)
+        # 记录dp[i-1] dp[i-2]
+        dp_i_1 = 0
+        dp_i_2 = 0
+        dp_i = 0
+        for i in range(n):
+            dp_i = max(dp_i, nums[i] + dp_i_2)
+            dp_i_2 = dp_i_1
+            dp_i_1 = dp_i
+        return dp_i
+        
+        
