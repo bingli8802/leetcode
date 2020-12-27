@@ -31,7 +31,7 @@ class Solution(object):
         def KMP():
             M = len(needle)
             # dp是一个长度与needle长度相等的二维list,状态的数量与needle长度是相同的
-            dp = [[0] * 101 for _ in range(M)]
+            dp = [[0] * 255 for _ in range(M)]
             # 初始化状态0，只有needle[0]对应的字符才能使状态转移
             dp[0][ord(needle[0])] = 1
             # 初始化影子状态x
@@ -39,7 +39,7 @@ class Solution(object):
             # 对于每个状态...
             for j in range(1,M):
                 # 对于每种字符(ASCII码的0~255)
-                for c in range(101):
+                for c in range(255):
                     # 第j个状态对于除needle[j]对应的字符以外的新字符输入的响应,与影子变量的响应相同
                     dp[j][c] = dp[x][c]
                 # 遇到needle[j]，则进入下一状态
