@@ -4,12 +4,12 @@
 #         self.val = val
 #         self.next = next
 class Solution(object):
+    # 迭代
     def reverseList(self, head):
         """
         :type head: ListNode
         :rtype: ListNode
         """
-        # 迭代
         prev = None
         cur = head
         while cur != None:
@@ -17,4 +17,19 @@ class Solution(object):
             cur.next = prev
             prev = cur
             cur = temp
+        # print head
         return prev
+    
+    # 递归
+	def reverseList(self, head):
+		"""
+		:type head: ListNode
+		:rtype: ListNode
+		"""
+        if head == None or head.next == None:
+            return head
+        last = reverseList(head.next)
+        head.next.next = head
+        head.next = None
+        return last
+        
