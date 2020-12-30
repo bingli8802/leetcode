@@ -6,51 +6,52 @@
 #         self.right = None
 
 class Codec:
+    # 前序遍历
+    # 把一棵二叉树序列化成字符串
+    def serialize_core(self, root, sequence):
+        if root is None:
+            sequence.append('#')
+            return
+        sequence.append(str(root.val))
+        self.serialize_core(root.left, sequence)
+        self.serialize_core(root.right, sequence)
 
     def serialize(self, root):
         """Encodes a tree to a single string.
-        
+
         :type root: TreeNode
         :rtype: str
         """
-        # 前序遍历 根节点永远在index[0]
-        def preorder(root):
-            if not root:
-                return ['#']
-            return [root.val] + preorder(root.left) + preorder(root.right)
-        # 把list转换成字符串
-        print preorder(root)
-        return ' '.join([str(i) for i in preorder(root)])
+        sequence = []
+        if root is None:
+            return ''
+        self.serialize_core(root, sequence)
+        # print sequence
+        return ','.join(sequence)
+    
+    # 把字符串反序列化成二叉树
+    def deserialize_core(self, sequence):
+        first = sequence.pop(0)
+        if first == '#':
+            return None
+        root = TreeNode(first)
+        root.left = self.deserialize_core(sequence)
+        root.right = self.deserialize_core(sequence)
+        return root
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
-        
+
         :type data: str
         :rtype: TreeNode
         """
-        # 把字符串转换成list
-        data = iter(data.split(" "))
-        def buildTree():
-            v = next(data)
-            if v == "#":
-                return None
-            node = TreeNode(int(v))
-            node.left = buildTree()
-            node.right = buildTree()
-            return node
-        return buildTree()
-    
-        # data = data.split(" ")
-        # def buildTree():
-        #     val=data[0]
-        #     del data[0]
-        #     if val == "#":
-        #         return None
-        #     node = TreeNode(int(val))
-        #     node.left = buildTree()
-        #     node.right = buildTree()
-        #     return node
-        # return buildTree()
+        root = None
+        if data == '':
+            return root
+        sequence = data.split(',')
+        # print(sequence)
+        return self.deserialize_core(sequence)
+
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()
