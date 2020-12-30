@@ -29,8 +29,8 @@ class Solution(object):
             d += 1
             root = root.left
         return d
+    
 # BFS 迭代 广度优先
-class Solution(object):
     def countNodes(self, root):
         """
         :type root: TreeNode
@@ -48,16 +48,16 @@ class Solution(object):
             if cur.right:
                 q.append(cur.right)
         return res
+    
 # DFS 递归
-class Solution(object):
     def countNodes(self, root):
         """
         :type root: TreeNode
         :rtype: int
         """
         return 0 if not root else 1 + self.countNodes(root.left) + self.countNodes(root.right)
+    
 # 二分查找
-class Solution(object):
     def countNodes(self, root):
         """
         :type root: TreeNode
@@ -77,3 +77,8 @@ class Solution(object):
         if left_height == right_height:
             return pow(2,left_height) - 1
         return 1 + self.countNodes(root.left) + self.countNodes(root.right)
+
+
+
+
+
