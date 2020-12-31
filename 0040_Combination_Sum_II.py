@@ -24,7 +24,33 @@ class Solution(object):
                 helper(j+1, rem - candidates[j], li + [candidates[j]])
         helper(0, target, [])
         return res
-
+    
+    # 回溯算法 东哥套路模版
+    def combinationSum2(self, candidates, target):
+        """
+        :type candidates: List[int]
+        :type target: int
+        :rtype: List[List[int]]
+        """
+        if candidates == []:
+            return []
+        res = []
+        candidates.sort()
+        
+        def backTrack(li, tmp, rem):
+            if rem == 0:
+                res.append(tmp)
+            if rem < 0 or li == []:
+                return
+            for i in range(len(li)):
+                if li[i] > rem:
+                    break
+                if i >= 1 and li[i] == li[i-1]:
+                    continue
+                backTrack(li[i+1:], tmp + [li[i]], rem - li[i])
+        backTrack(candidates, [], target)
+        return res        
+        
 # 这个避免重复当思想是在是太重要了。
 # 这个方法最重要的作用是，可以让同一层级，不出现相同的元素。即
 #                   1
