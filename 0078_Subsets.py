@@ -1,5 +1,5 @@
 class Solution(object):
-    # 解法太巧妙了 和自己思路一样 但没做出来
+    # 解法太巧妙了 和自己思路一样
     def subsets(self, nums):
         """
         :type nums: List[int]
@@ -11,7 +11,7 @@ class Solution(object):
             print res
         return res
     
-    # 回溯法 递归 更快 好难理解啊
+    # 回溯法 递归 更快
     def subsets(self, nums):
         """
         :type nums: List[int]
@@ -26,6 +26,26 @@ class Solution(object):
                 helper(j + 1,tmp + [nums[j]] )
                 print res
         helper(0, [])
-        return res  
-
+        return res 
+    
+    # 东哥思路 套模板
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        res = []
+        def backTrack(li, tmp):
+            res.append(tmp)
+            for i in range(len(li)):
+                backTrack(li[i+1:], tmp + [li[i]])
+        backTrack(nums, [])
+        return res
+            
+            
+            
+            
+        
+        
+        
 
