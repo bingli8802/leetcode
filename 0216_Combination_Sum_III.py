@@ -21,3 +21,34 @@ class Solution(object):
                 helper(j+1, cnt+1, tmp+[li[j]])
         helper(0, 0, [])
         return res
+    
+    # 回溯算法 套用东哥模板
+    def combinationSum3(self, k, n):
+        """
+        :type k: int
+        :type n: int
+        :rtype: List[List[int]]
+        """
+        li = [i for i in range(1, 10)]
+        res = []
+        def backTrack(arr, tmp, rem):
+            if rem == 0 and len(tmp) == k:
+                res.append(tmp)
+                return
+            elif rem != 0 and len(tmp) == k:
+                return
+            for i in range(len(arr)):
+                if li[i] > rem:
+                    break
+                backTrack(arr[i+1:], tmp + [arr[i]], rem - arr[i])
+        backTrack(li, [], n)
+        return res
+        
+        
+        
+        
+        
+        
+        
+        
+        
