@@ -38,3 +38,41 @@ class Solution(object):
                 if i >= num:
                     dp[i] += dp[i-num]
         return dp[target]
+    
+    # 回溯算法 套用东哥模版 超时了
+    def combinationSum4(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        res = []
+        nums.sort()
+        def backTrack(li, tmp, rem):
+            if rem == 0:
+                res.append(tmp)
+            for i in range(len(li)):
+                if li[i] > rem:
+                    break
+                backTrack(li[:i+1] + li[i+1:], tmp + [li[i]], rem - li[i])
+        backTrack(nums, [], target)
+        return len(res)
+        
+    # def combinationSum4(self, nums, target):
+    #     """
+    #     :type nums: List[int]
+    #     :type target: int
+    #     :rtype: int
+    #     """
+    #     res = 0
+    #     nums.sort()
+    #     def backTrack(li, tmp, rem):
+    #         if rem == 0:
+    #             res += 1
+    #         for i in range(len(li)):
+    #             if li[i] > rem:
+    #                 break
+    #             backTrack(li[:i+1] + li[i+1:], tmp + [li[i]], rem - li[i])
+    #     backTrack(nums, [], target)
+    #     return res
+        
