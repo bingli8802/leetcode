@@ -9,6 +9,7 @@
 # 3. 当 root 节点左右孩子有一个为空时，返回不为空的孩子节点的深度
 # 4. 当 root 节点左右孩子都不为空时，返回左右孩子较小深度的节点值
 class Solution(object):
+    # 递归
     def minDepth(self, root):
         """
         :type root: TreeNode
@@ -24,3 +25,26 @@ class Solution(object):
             return max(self.minDepth(root.left), self.minDepth(root.right)) + 1
         # 3. 左右孩子都不为空，返回最小深度+1
         return min(self.minDepth(root.left), self.minDepth(root.right)) + 1
+    
+    # 东哥BFS模版
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root:
+            return 0
+        q = [root]
+        depth = 1
+        while q:
+            sz = len(q)
+            for i in range(sz):
+                cur = q.pop(0)
+                if cur.left == None and cur.right == None:
+                    return depth
+                if cur.left:
+                    q.append(cur.left)
+                if cur.right:
+                    q.append(cur.right)
+            depth += 1
+        return depth
