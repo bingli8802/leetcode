@@ -29,6 +29,7 @@ class Solution(object):
         """
         n = len(nums)
         dic = {}
+        # base case 一定要写
         dic[0] = 1
         sum0_i = res = 0
         for i in range(n):
@@ -37,6 +38,8 @@ class Solution(object):
                 res += dic[sum0_i - k]
             # 这里用dict.get(value, default value)避免keyerror
             dic[sum0_i] = dic.get(sum0_i, 0) + 1
+        print dic 
+        # {0: 1, 3: 1, 8: 2, 10: 1, 12: 1, 13: 1}
         return res
     
     # 利用字典进行优化 defaultdict
@@ -51,7 +54,7 @@ class Solution(object):
         res = 0
         # defaultdict字典为不存在的key赋值0
         dic = collections.defaultdict(int)
-        # 什么都不取，前缀和一定为0，即前缀和为0天然存在1种情况
+        # 什么都不取，前缀和一定为0，即前缀和为0 天然存在1种情况
         dic[0] = 1
         for i in range(n):
             # sum0_i 是0～i区间的和
@@ -61,6 +64,8 @@ class Solution(object):
             res += dic[sum0_i - k]
             # 需要注意的是，当前的前缀和要在最后更新，如果不这样子，k为0的时候会重复加
             dic[sum0_i] += 1
+        print dic
+        # {0: 1, 3: 1, 4: 0, 6: 0, 8: 2, 9: 0, 10: 1, 12: 1, 13: 1, -1: 0}
         return res
 
             
