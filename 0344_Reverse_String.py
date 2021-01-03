@@ -10,13 +10,20 @@ class Solution(object):
         """
         s[:] = s[::-1]
         """
-        
         mid = int(len(s)/2)
+        j = len(s) - 1
         for i in xrange(mid):
-            s[i], s[len(s)-1-i] = s[len(s)-1-i], s[i]
-        
-#         i = 0
-#         j = len(s) - 1
-#         while i < j:
-#             s[i], s[j] = s[j], s[i]
-#             i, j = i + 1, j - 1
+            s[i], s[j-i] = s[j-i], s[i]
+            
+    # 类似二分查找  
+    def reverseString(self, s):
+        """
+        :type s: List[str]
+        :rtype: None Do not return anything, modify s in-place instead.
+        """
+        left = 0
+        right = len(s) - 1
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
