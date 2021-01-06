@@ -84,7 +84,7 @@ class Solution:
             for j in range(col):
                 # 如果当前节点是1 找出最终根节点
                 if grid[i][j] == "1":
-                    res.add(find((i * col + j)))
+                    res.add(find(i * col + j))
         return len(res)
 
 # [["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]]
