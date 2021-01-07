@@ -41,10 +41,22 @@ class Solution(object):
                 backTrack(li[i+1:], tmp + [li[i]])
         backTrack(nums, [])
         return res
-            
-            
-            
-            
+                   
+    # laioffer老师解法
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """  
+        res = []
+        def backTrack(li, index, tmp):
+            if index == len(li):
+                res.append(tmp)
+                return
+            backTrack(li, index+1, tmp+[li[index]])
+            backTrack(li, index+1, tmp)
+        backTrack(nums, 0, [])
+        return res
         
         
         
