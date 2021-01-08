@@ -52,3 +52,22 @@ class Solution(object):
                 backTrack(li[i+1:], tmp+[li[i]])
         backTrack(nums, [])
         return res
+
+        # laioffer老师答案
+    def subsetsWithDup(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        nums.sort()
+        res = []
+        def backTrack(sol, li, index):
+            if index == len(li):
+                res.append(sol)
+                return
+            backTrack(sol+[li[index]], li, index+1)
+            while index < len(li)-1 and li[index+1] == li[index]:
+                index += 1
+            backTrack(sol, li, index+1)
+        backTrack([], nums, 0)
+        return res
