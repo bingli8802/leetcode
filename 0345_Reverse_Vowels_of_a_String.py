@@ -3,8 +3,27 @@ class Solution(object):
         """
         :type s: str
         :rtype: str
-        """
+        """   
+        vowels = "aeiouAEIOU"
+        li = list(a)
+        i = 0
+        j = len(li) - 1
+        while i < j:
+            if li[i] in vowels and li[j] in vowels :
+                li[i], li[j] = li[j], li[i]
+                i += 1
+                j -= 1
+            elif li[i] in vowels and li[j] not in vowels:
+                j -= 1
+            else:
+                i += 1
+        return "".join(li)
         
+    def reverseVowels(self, a):
+        """
+        :type s: str
+        :rtype: str
+        """
         li = 'aeiouAEIOU'
         s = list(a) 
         i = 0
