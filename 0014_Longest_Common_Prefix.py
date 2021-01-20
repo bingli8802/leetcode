@@ -16,3 +16,21 @@ class Solution(object):
                     return pre  
             pre = strs[0][0:x+1] 
         return pre
+    
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        res = ""
+        if len(strs) == 0:
+            return ""
+        # min_len = float("inf")
+        min_len = min(len(s) for s in strs)
+        for i in range(min_len):
+            for j in range(len(strs)-1):
+                if strs[j][i] != strs[j+1][i]:
+                    return res
+            res += strs[0][i]
+        return res
+        
