@@ -20,6 +20,7 @@ class Solution(object):
             else:
                 res += tmp[::-1]
                 
+    # Diagonal index sum are equal to same value           
     def findDiagonalOrder(self, matrix):
         """
         :type matrix: List[List[int]]
@@ -43,4 +44,35 @@ class Solution(object):
                 res += dic[d][::-1]        
         return res
 
-
+    # 模拟遍历
+    def findDiagonalOrder(self, matrix):
+        """
+        :type matrix: List[List[int]]
+        :rtype: List[int]
+        """
+        if not matrix:
+            return []
+        m = len(matrix)
+        n = len(matrix[0])
+        res = []
+        i = j = 0
+        for _ in range(m * n):
+            res.append(matrix[i][j])
+            if (i + j) % 2: #奇数行
+                if i == m - 1:
+                    j += 1
+                else:
+                    i += 1
+                    if j > 0:
+                        j -= 1
+            else: #偶数行
+                if j == n - 1:
+                    i += 1
+                else:
+                    j += 1
+                    if i > 0:
+                        i -= 1
+        return res 
+        
+        
+        
