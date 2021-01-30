@@ -1,7 +1,9 @@
 class Solution(object):
-    # 网上答案
-    # 如果都是正数 或者有偶数个负数
-    # 如果有奇数个负数
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """ 
     def maxProduct(self, nums):
         """
         :type nums: List[int]
@@ -17,4 +19,22 @@ class Solution(object):
             curMin = min(curMin * nums[i], nums[i])
             maxProd = max(maxProd, curMax)
         return maxProd
-        
+    
+    # 第二种解法更容易理解
+    # 每次都要找到包含当前位置在内的最大值和最小值
+    def maxProduct(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """    
+        res = nums[0]
+        pre_max = nums[0]
+        pre_min = nums[0]
+        for num in nums[1:]:
+            cur_max = max(pre_max * num, pre_min * num, num)
+            cur_min = min(pre_max * num, pre_min * num, num)
+            res = max(res, cur_max)
+            pre_max = cur_max
+            pre_min = cur_min
+        return res
+
