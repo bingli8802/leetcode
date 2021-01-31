@@ -24,15 +24,15 @@
 # i, v = NestedIterator(nestedList), []
 # while i.hasNext(): 
 #   v.append(i.next())
+# i = NestedIterator([[1,2],[4,[6]]])
 
 class NestedIterator:
     def __init__(self, nestedList: [NestedInteger]):
-        self.stack = list()
-        
-        # 逆序存入，stack弹出才是正序
+        self.stack = []
+        # 逆序存入，stack弹出才是正序 
+        # stack = [[4,[6]], [1,2]]
         for ni in reversed(nestedList):
             self.stack.append(ni)
-        # print (self.stack)
     
     def next(self) -> int:
         return self.stack.pop().getInteger()
@@ -45,7 +45,8 @@ class NestedIterator:
             # 如果栈顶就是integer，那么可以停止寻找，直接返回True
             if self.stack[-1].isInteger(): 
                 return True
-            # 不然的话就是list，存进栈里继续找，注意逆序存入，才能顺序取出
+            # 否则就是list，存进栈里继续找，注意逆序存入，才能顺序取出
+            stack = [[4,[6]], 2, 1]
             for ni in reversed(self.stack.pop().getList()):
                 self.stack.append(ni)
         
