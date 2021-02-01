@@ -1,4 +1,5 @@
 class Solution(object):
+    # 实质和House Robber I 一样，把房子分成两部分分别来计算 
     def rob(self, nums):
         """
         :type nums: List[int]
