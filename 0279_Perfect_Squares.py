@@ -11,7 +11,6 @@ class Solution(object):
             while i - j*j >= 0:
                 dp[i] = min(dp[i], dp[i-j*j] + 1)
                 j += 1
-        print dp
         return dp[n]
     
     # 和第一种解法思路类似 但是更好理解 效率也更高
@@ -23,20 +22,20 @@ class Solution(object):
         # lst is to store all the perfect squares that are smaller or equal to n
         # lst用来存放所有比n小的完全平方数
         lst = [i*i for i in range(1,n) if i*i <= n]
+        print lst
         # create another list dp to store perfect squares that a number need from 1 to n
         # dp存放所有小于n的数 遍历每一个数字
         dp = [0] * (n+1)
         for num in range(1,n+1):
-            # number from 1 to 5 
-            # for each number, it can be divided into n 1's 
+            # number from 1 to 4, for each number, it can be divided into n 1's 
             # 对于每个数字num来说 都可以拆分成num个1 所以把当前最小完全平方数就设为num
-            # 比如3 它可以拆分成3个1
+            # 比如4 它可以拆分成4个1 min_num = 4
             min_num = num
             # a temporary list is to store perfect squares that are smaller or equal to current number
-            # 这个临时list存放所有小于3的完全平方数[1]
+            # 这个临时list存放所有小于等于4的完全平方数[1，4]
             tmp_lst = [c for c in lst if c <= num]
             for j in tmp_lst:
-                # 在dp中找到num-j的完全平方数的个数 dp[3-1]=1
+                # 在dp中找到num-j的完全平方数的个数 dp[4-4]=1
                 perfectSquares = dp[num-j] + 1
                 if perfectSquares < min_num:
                     min_num = perfectSquares
