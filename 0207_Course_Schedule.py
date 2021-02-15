@@ -17,6 +17,8 @@ class Solution(object):
         for i in range(numCourses):
             if indegree[i] == 0:
                 q.append(i)
+        if not q:
+            return False
         cnt = 0
         while q:
             course = q.popleft()
