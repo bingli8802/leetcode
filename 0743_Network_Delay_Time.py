@@ -1,5 +1,33 @@
 class Solution(object):
-    # 参考liweiwei
+    def networkDelayTime(self, times, n, k):
+        """
+        :type times: List[List[int]]
+        :type n: int
+        :type k: int
+        :rtype: int
+        """
+        # dic = {2:{1:1, 3:1}, 3:{4:1}}
+        dic = defaultdict(dict)
+        for x,y,z in times:
+            dic[x][y] = z
+        record = [float('inf')] * n  
+        record[k-1] = 0
+        q = deque([(k, 0)])
+        # q.append([(k, 0)])
+        visited = set()
+        while q:
+            node, base = q.popleft()
+            visited.add(node)
+            for nei, tm in dic[node].items():
+                if base + tm < record[nei-1]:
+                    record[nei-1] = base + tm
+                    q.append((nei, base+tm))
+                         
+        if len(visited) != n:
+            return -1
+        else:
+            return max(record)
+    # 参考liweiwei BFS
     def networkDelayTime(self, times, n, k):
         """
         :type times: List[List[int]]
@@ -34,30 +62,6 @@ class Solution(object):
             return -1
         else:
             return max(record.values())
-        
-    # 网友答案 差不多
-    def networkDelayTime(self, times, n, k):
-        """
-        :type times: List[List[int]]
-        :type n: int
-        :type k: int
-        :rtype: int
-        """
-        dic = collections.defaultdict(list)
-        for u,v,w in times:
-            dic[u].append((v,w))
-        visited = {k:0}
-        queue = collections.deque([[k,0]])
-        while queue:
-            curNode,curTime = queue.popleft()
-            for node,time in dic[curNode]:
-                t = curTime + time
-                if node not in visited or t < visited[node]:
-                    visited[node] = t
-                    queue.append([node,t])
-        if len(visited) == n:
-            return max(visited.values())
-        return -1
 
     def networkDelayTime(self, times, N, K):
         graph = collections.defaultdict(list)
@@ -77,5 +81,3 @@ class Solution(object):
 
         return max(dist.values()) if len(dist) == N else -1
 
-
-                
