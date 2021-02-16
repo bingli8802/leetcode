@@ -8,24 +8,25 @@ class Solution(object):
         :type end: int
         :rtype: float
         """
-        d = defaultdict(list)
-        for (x, y), p in zip(edges, succProb):
-            d[x].append((y, p))
-            d[y].append((x, p))
-            
-        queue = deque([(start, 1)])
-        record = defaultdict(int)
         res = 0
+        dic = defaultdict(dict)
+        for (x, y), p in zip(edges, succProb):
+            dic[x][y] = p
+            dic[y][x] = p
         
-        while queue:
-            node, prob = queue.popleft()
+        q = deque([(start, 1)])
+        
+        # probabilities from start to each node
+        record = [0] * n
+        record[start] = 1
+        
+        while q:
+            node, prob = q.popleft()      
             if node == end:
                 res = max(res, prob)
-                continue
-
-            for neighbor, neighbor_prob in d[node]:
-                new_prob = neighbor_prob * prob
-                if new_prob > record[neighbor]:
-                    record[neighbor] = new_prob
-                    queue.append((neighbor, new_prob))
+            for nei, p in dic[node].items():
+                if prob * p > record[nei]:
+                    q.append((nei, prob * p)) 
+                    record[nei] = prob * p
         return res
+        
