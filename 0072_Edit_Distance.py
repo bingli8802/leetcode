@@ -34,6 +34,14 @@ class Solution(object):
         
         return D[m][n]
 
+    # time: n times m O(n*m)
+    # space: n times m O(n*m)
+    # each of the cell is a subproblem
+    '''
+    relplace | insert
+    -----------------
+    delete   |  cur
+    '''
     # 自己解法 参考老师讲义 效率比官网解法高
     def minDistance(self, word1, word2):
         """
